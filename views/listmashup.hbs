@@ -1,0 +1,151 @@
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet" href="/addmashup.css" />
+    <title>List MashUp</title>
+  </head>
+  <body>
+    <div class="container-fluid px-0">
+      <nav class="navbar navbar-expand-md navbar-dark bg-black px-0">
+        <a
+          class="navbar-brand mr-5"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        ><img id="logo" src="https://i.imgur.com/K7Nwq4V.jpg" />
+          &nbsp;&nbsp;&nbsp;{{name}}<span class="dropdown-toggle"></span></a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="/logout">Logout</a></div>
+        <button
+          class="navbar-toggler mr-3"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        > <span class="navbar-toggler-icon"></span> </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/main"><span class="fa fa-home"></span>
+                Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/config"><span
+                  class="fa fa-group"
+                ></span>
+                Configuration</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><span class="fa fa-comment"></span>
+                Feedback</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="container">
+      <div class="text-1"></div>
+      <div class="text-2"></div>
+      <div class="text-3"></div>
+      <h4>Mash-Up List For <strong style="margin-left: 1.2em;">{{name}}</strong></h4>
+      <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Application Id</th>
+            <th scope="col">Email Address</th>
+            <th scope="col">Object1</th>
+            <th scope="col">Object2</th>
+            <th scope="col">Object3</th>
+            <th scope="col">Object4</th>
+            <th scope="col">Button</th>
+          </tr>
+        </thead>
+        {{#each mashup}}
+        <tbody>
+          <td>{{this.id}}</td>
+          <td id="appId">{{this.applicationId}}</td>
+          <td>{{this.email}}</td>
+          <td id="object1Id">{{this.Object1Id}}</td>
+          <td id="object2Id">{{this.Object2Id}}</td>
+          <td id="object3Id">{{this.Object3Id}}</td>
+          <td id="object4Id">{{this.Object4Id}}</td>
+          <td><button type="button" class="btn btn-danger" onclick="myfunction()"><a href="/mashup" style="text-decoration: none; color:white">Show MashUp</a></button></td>
+        </tbody>
+        {{/each}}
+      </table>
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function(){ $(".navbar-brand").click(function(){
+      $(".navbar-toggler").addClass("collapsed");
+      $(".navbar-toggler").attr("aria-expanded","false");
+      $(".navbar-collapse").removeClass("show"); }); });
+    </script>
+    <script>
+        function myfunction(){
+            const appId=document.getElementById("appId").innerText;
+            const object1Id=document.getElementById("object1Id").innerText;
+            const object2Id=document.getElementById("object2Id").innerText;
+            const object3Id=document.getElementById("object3Id").innerText;
+            const object4Id=document.getElementById("object4Id").innerText;
+            localStorage.setItem("appId",appId);
+            localStorage.setItem("object1",object1Id);
+            localStorage.setItem("object2",object2Id);
+            localStorage.setItem("object3",object3Id);
+            localStorage.setItem("object4",object4Id);
+
+            console.log(localStorage.getItem("object1"));
+        }
+    </script>
+  </body>
+</html>

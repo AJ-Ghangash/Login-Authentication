@@ -4,11 +4,19 @@ const path=require("path");
 let mysql=require("mysql");
 const dotenv=require("dotenv");
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+app.use(session({ 
+    secret: '123456cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60*60*1000 }
+}))
 
 dotenv.config({ path: './.env'});
 
